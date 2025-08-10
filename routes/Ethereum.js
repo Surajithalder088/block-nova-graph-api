@@ -1,13 +1,13 @@
 const Ethereum = require("../models/Ethereum");
 
 const fetchingEthereum=async(days)=>{
-    const data=[
-                [4,5],
-                [6,7]
-            ]
+     let data=null
+    let fetched=0
         
             console.log("number of days:",days);
             try {
+
+                 if(!data ||now-fetched>60*1000){
  const response = await axios.get(
       "https://api.coingecko.com/api/v3/coins/ethereum/market_chart",
       {
@@ -18,7 +18,7 @@ const fetchingEthereum=async(days)=>{
         },
       }
     );
-                    const data =  JSON.stringify(response.data.prices)
+                     data =  JSON.stringify(response.data.prices)
                 const coinData=await Ethereum.findOne({day:days})
                 if(!coinData){
                     const newData=await Ethereum.create({
@@ -32,7 +32,7 @@ const fetchingEthereum=async(days)=>{
                     coinData.data=JSON.parse(data)
                     await coinData.save()
                     console.log('updated data',coinData);
-            
+            }
         
                
                 

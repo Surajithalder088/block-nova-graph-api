@@ -4,12 +4,15 @@ const Bitcoin = require("../models/Bitcoin");
 
 const fetchinggBitcoin=async(days)=>{
 
-
+     let data=null
+    let fetched=0
    
 
 
     console.log("number of days:",days);
     try {
+
+        if(!data ||now-fetched>60*1000){
          const response = await axios.get(
       "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart",
       {
@@ -35,7 +38,7 @@ const fetchinggBitcoin=async(days)=>{
             await bitcoinData.save()
             console.log('updated data',bitcoinData);
             
-
+}
        
         
     } catch (error) {
