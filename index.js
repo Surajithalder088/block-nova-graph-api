@@ -19,7 +19,7 @@ const app = express();
 app.use(cors()); // enable for all domains
 
 const PORT = 5000;
-const DAILY_RUN_TIME='0 7 * * *'
+const DAILY_RUN_TIME='35 6 * * *'
 
 const daysList=[1,7,30,60,180,365]
 async function connectDB() {
